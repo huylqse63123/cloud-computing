@@ -5,19 +5,17 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Entity
 @Table(name = "ad")
 public class Ad implements Serializable {
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
     @Id
     @GenericGenerator(name = "generator", strategy = "increment")
     @GeneratedValue(generator = "generator")
     @Column(name = "ad_id", length = 11)
-    private Long adId;
+    private int adId;
 
     @Column(name = "title", length = 45)
     private String title;
@@ -35,7 +33,6 @@ public class Ad implements Serializable {
     @JoinColumn(name = "contact_id", referencedColumnName = "contact_id")
     private Contact contact;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "bedsit_id", referencedColumnName = "bedsit_id")
-    private Bedsit bedsit;
+    @OneToMany(mappedBy = "ad")
+    private Set<Bedsit> bedsits;
 }

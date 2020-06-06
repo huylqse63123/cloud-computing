@@ -13,7 +13,7 @@ public class Contact {
     @GenericGenerator(name = "generator", strategy = "increment")
     @GeneratedValue(generator = "generator")
     @Column(name = "contact_id", length = 11)
-    private Long contactId;
+    private int contactId;
 
     @Column(name = "email", length = 50)
     private String email;
