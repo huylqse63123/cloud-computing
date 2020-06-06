@@ -16,25 +16,26 @@ public class Ad implements Serializable {
     @Id
     @GenericGenerator(name = "generator", strategy = "increment")
     @GeneratedValue(generator = "generator")
+    @Column(name = "ad_id", length = 11)
     private Long adId;
 
-    @Column(name = "title")
+    @Column(name = "title", length = 45)
     private String title;
 
     @Column(name = "published")
     private Timestamp published;
 
-    @Column(name = "resourceUrl")
+    @Column(name = "resource_url", length = 500)
     private String resourceUrl;
 
-    @Column(name = "content")
+    @Column(name = "content", length = 1000)
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "contactId", referencedColumnName = "contactId")
+    @JoinColumn(name = "contact_id", referencedColumnName = "contact_id")
     private Contact contact;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "bedsitId", referencedColumnName = "bedsitId")
+    @JoinColumn(name = "bedsit_id", referencedColumnName = "bedsit_id")
     private Bedsit bedsit;
 }

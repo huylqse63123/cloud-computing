@@ -1,39 +1,32 @@
 package com.cloudcomputing.nhatro.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "bedsit")
 public class Bedsit {
 
-    @Id
-    @GenericGenerator(name = "generator", strategy = "increment")
-    @GeneratedValue(generator = "generator")
-    private Long bedsitId;
-
     @Column(name = "area")
     private Float area;
 
-    @Column(name = "detailedAddress")
+    @Column(name = "detailed_address", length = 500)
     private String detailedAddress;
 
-    @Column(name = "price")
+    @Column(name = "price", length = 11)
     private int price;
 
-    @Column(name = "imageResource")
+    @Column(name = "image_resource", length = 500)
     private String imageResource;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "cityId", referencedColumnName = "cityId")
-    private City city;
+    @JoinColumn(name = "province_id", referencedColumnName = "province_id")
+    private Province province;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "districtId", referencedColumnName = "districtId")
+    @JoinColumn(name = "district_id", referencedColumnName = "district_id")
     private District district;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "adId", referencedColumnName = "adId")
+    @JoinColumn(name = "ad_id", referencedColumnName = "ad_id")
     private Ad ad;
 }
