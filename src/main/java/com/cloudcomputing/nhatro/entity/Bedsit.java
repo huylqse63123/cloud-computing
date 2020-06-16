@@ -1,8 +1,18 @@
 package com.cloudcomputing.nhatro.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "bedsit")
 public class Bedsit implements Serializable {
@@ -23,17 +33,17 @@ public class Bedsit implements Serializable {
     private String imageResource;
 
     @MapsId("provinceId")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "province_id", referencedColumnName = "province_id", insertable = false, updatable = false)
     private Province province;
 
     @MapsId("districtId")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "district_id", referencedColumnName = "district_id", insertable = false, updatable = false)
     private District district;
 
     @MapsId("adId")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "ad_id", referencedColumnName = "ad_id", insertable = false, updatable = false)
     private Ad ad;
 }

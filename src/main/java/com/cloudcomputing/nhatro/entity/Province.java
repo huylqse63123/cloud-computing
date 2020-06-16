@@ -1,13 +1,23 @@
 package com.cloudcomputing.nhatro.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "province")
-public class Province {
+public class Province implements Serializable {
 
     @Id
     @GenericGenerator(name = "generator", strategy = "increment")
@@ -18,6 +28,7 @@ public class Province {
     @Column(name = "province_name", length = 45)
     private String province_name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "province")
     private Collection<Bedsit> bedsits;
 }
